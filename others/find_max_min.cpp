@@ -2,7 +2,7 @@
 #include <vector>
 
 // Time complexity: O(n) : 3*(n-1)/2
-std::tuple<int, int> find_max_min(std::vector<int> &array)
+std::tuple<int, int> FindMaxMin(std::vector<int> &array)
 {
     if (array.empty())
         throw std::invalid_argument("array is empty");
@@ -46,11 +46,11 @@ int main()
 {
     int max, min;
     std::vector<int> array = {11, -2, -3, 0, 1, -7, -26};
-    std::tie(max, min) = find_max_min(array);
+    std::tie(max, min) = FindMaxMin(array);
     std::cout << max << " " << min << std::endl;
 
     array.push_back(100);
-    std::tie(max, min) = find_max_min(array);
+    std::tie(max, min) = FindMaxMin(array);
     std::cout << max << " " << min << std::endl;
 
     return 0;
