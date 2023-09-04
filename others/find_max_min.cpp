@@ -2,7 +2,7 @@
 #include <vector>
 
 // Time complexity: O(n) : 3*(n-1)/2
-std::tuple<int, int> FindMaxMin(std::vector<int> &array)
+std::tuple<int, int> FindMaxMin(const std::vector<int> &array)
 {
     if (array.empty())
         throw std::invalid_argument("array is empty");
