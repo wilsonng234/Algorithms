@@ -55,9 +55,3 @@ namespace finding_last_zero
         assert(FindingLastZero(arr) == 5);
     }
 }
-
-int main()
-{
-    finding_last_zero::Test();
-    return 0;
-}
