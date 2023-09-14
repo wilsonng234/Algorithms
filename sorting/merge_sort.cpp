@@ -4,6 +4,35 @@
 
 namespace merge_sort
 {
+    // O(n^2)
+    void InPlaceMerge(std::vector<int> &arr, int start, int mid, int end)
+    {
+        int i = start, j = mid + 1;
+
+        while (i <= mid && j <= end)
+        {
+            if (arr[i] <= arr[j])
+                i++;
+            else
+            {
+                int smallest_value = arr[j];
+                int smallest_idx = j;
+
+                while (smallest_idx > i)
+                {
+                    arr[smallest_idx] = arr[smallest_idx - 1];
+                    smallest_idx--;
+                }
+
+                arr[i] = smallest_value;
+                i++;
+                mid++;
+                j++;
+            }
+        }
+    }
+
+    // O(n)
     void Merge(std::vector<int> &arr, int start, int mid, int end)
     {
         std::vector<int> left(arr.begin() + start, arr.begin() + mid + 1);
@@ -47,7 +76,7 @@ namespace merge_sort
     }
 
     void Test()
-    {   
+    {
         std::vector<int> arr = {5, -2, 4, -6, 1, 3};
         MergeSort(arr);
         assert(arr == std::vector<int>({-6, -2, 1, 3, 4, 5}));
