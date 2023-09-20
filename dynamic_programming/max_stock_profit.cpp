@@ -23,28 +23,22 @@ namespace dynamic_programming
 
         void Test()
         {
-            std::vector<int> prices = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
-            assert(MaxStockProfit(prices) == 6);
+            std::vector<int> prices = {7, 1, 5, 3, 6, 4};
+            assert(MaxStockProfit(prices) == 5);
 
             prices = {1};
+            assert(MaxStockProfit(prices) == 0);
+
+            prices = {1, 2};
             assert(MaxStockProfit(prices) == 1);
 
-            prices = {-1};
-            assert(MaxStockProfit(prices) == -1);
+            prices = {2, 1};
+            assert(MaxStockProfit(prices) == 0);
 
-            prices = {20, 3};
-            assert(MaxStockProfit(prices) == 23);
-
-            prices = {5, 4, -1, 7, 8};
-            assert(MaxStockProfit(prices) == 23);
+            prices = {2, 1, 2, 1, 0, 1, 2};
+            assert(MaxStockProfit(prices) == 2);
 
             std::cout << "All tests passed" << std::endl;
         }
     }
-}
-
-int main()
-{
-    dynamic_programming::max_stock_profit::Test();
-    return 0;
 }
