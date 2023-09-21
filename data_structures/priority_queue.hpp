@@ -13,6 +13,7 @@ namespace data_structures
         public:
             virtual void Insert(Comparable element) = 0;
             virtual Comparable ExtractMin() = 0;
+            virtual ~PriorityQueue() = default;
         };
     }
 }
