@@ -6,7 +6,7 @@ namespace sorting
 {
     namespace counting_sort
     {
-        // numbers from 1 to range
+        // numbers from 0 to range
         void CountingSort(std::vector<int> &arr, int range)
         {
             std::vector<int> counter(range + 1, 0);
@@ -30,17 +30,17 @@ namespace sorting
         {
             int range = 10000;
 
-            std::vector<int> arr = {5, 32, 4, 135, 1, 3};
+            std::vector<int> arr = {5, 32, 4, 0, 135, 1, 3};
             CountingSort(arr, range);
-            assert(arr == std::vector<int>({1, 3, 4, 5, 32, 135}));
+            assert(arr == std::vector<int>({0, 1, 3, 4, 5, 32, 135}));
 
-            arr = {1};
+            arr = {0, 1};
             CountingSort(arr, range);
-            assert(arr == std::vector<int>({1}));
+            assert(arr == std::vector<int>({0, 1}));
 
-            arr = {20, 3};
+            arr = {20, 0, 0, 5, 3};
             CountingSort(arr, range);
-            assert(arr == std::vector<int>({3, 20}));
+            assert(arr == std::vector<int>({0, 0, 3, 5, 20}));
 
             arr = {3, 20, 7};
             CountingSort(arr, range);
