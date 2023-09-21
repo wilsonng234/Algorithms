@@ -1,3 +1,6 @@
+#ifndef DATA_STRUCTURES_PRIORITY_QUEUE_HPP
+#define DATA_STRUCTURES_PRIORITY_QUEUE_HPP
+
 #include <vector>
 
 namespace data_structures
@@ -13,3 +16,5 @@ namespace data_structures
         };
     }
 }
+
+#endif // DATA_STRUCTURES_PRIORITY_QUEUE_HPP
