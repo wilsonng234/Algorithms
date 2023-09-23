@@ -5,10 +5,10 @@ from typing import List
 # Given an array of intervals intervals where intervals[i] = [starti, endi], return the minimum number of intervals you need to remove to make the rest of the intervals non-overlapping.
 def erase_overlap_intervals(intervals: List[List[int]]) -> int:
     intervals.sort(key=lambda interval: interval[1])
-    cnt = -1
+    cnt = 0
     cur_end = intervals[0][1]
 
-    for interval in intervals:
+    for interval in intervals[1:]:
         if interval[0] >= cur_end:
             cur_end = interval[1]
         else:
