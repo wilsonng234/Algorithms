@@ -1,5 +1,6 @@
 from typing import List
-from functools import reduce, cmp_to_key
+from heapq import heappush, heappop
+from math import inf
 
 # 253. Meeting Rooms II
 
@@ -12,25 +13,19 @@ def min_meeting_rooms(intervals: List[List[int]]) -> int:
     num_meeting_rooms = 0
     meeting_rooms = []  # list of end times
 
-    def find_earliest_meeting_room(start):
-        earliest = -1
-
-        for i in range(len(meeting_rooms)):
-            if meeting_rooms[i] <= start and (
-                earliest == -1 or meeting_rooms[i] < meeting_rooms[earliest]
-            ):
-                earliest = i
-
-        return earliest
-
     for start, end in sorted_intervals:
-        earliest_meeting_room = find_earliest_meeting_room(start)
+        earliest_time = None
 
-        if earliest_meeting_room == -1:
-            meeting_rooms.append(end)
+        if len(meeting_rooms) > 0:
+            earliest_time = meeting_rooms[0]
+        else:
+            earliest_time = inf
+
+        if start < earliest_time:
             num_meeting_rooms += 1
         else:
-            meeting_rooms[earliest_meeting_room] = end
+            heappop(meeting_rooms)
+        heappush(meeting_rooms, end)
 
     return num_meeting_rooms
 
