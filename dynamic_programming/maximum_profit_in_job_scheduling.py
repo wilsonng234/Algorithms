@@ -8,7 +8,7 @@ from typing import List
 # If you choose a job that ends at time X you will be able to start another job that starts at time X.
 
 
-def findLargestCompatibleJob(jobs, startTime, left, right):
+def findClosestCompatibleJob(jobs, startTime, left, right):
     if left > right:
         return -1
     if left == right:
@@ -24,24 +24,24 @@ def findLargestCompatibleJob(jobs, startTime, left, right):
 
     # compatible
     if jobs[mid][1] <= startTime:
-        return findLargestCompatibleJob(jobs, startTime, mid, right)
+        return findClosestCompatibleJob(jobs, startTime, mid, right)
     # incompatible
-    return findLargestCompatibleJob(jobs, startTime, left, mid - 1)
+    return findClosestCompatibleJob(jobs, startTime, left, mid - 1)
 
 
 def jobScheduling(startTime: List[int], endTime: List[int], profit: List[int]) -> int:
     dp = [0] * (len(startTime) + 1)
     jobs = sorted(zip(startTime, endTime, profit), key=lambda x: x[1])
-    largestCompatibleJob = [-1] * len(jobs)
+    closestCompatibleJob = [-1] * len(jobs)
 
     for i in range(len(jobs)):
         startTime, endTime, profit = jobs[i]
-        largestCompatibleJob[i] = findLargestCompatibleJob(jobs, startTime, 0, i - 1)
+        closestCompatibleJob[i] = findClosestCompatibleJob(jobs, startTime, 0, i - 1)
 
-        if largestCompatibleJob[i] == -1:
+        if closestCompatibleJob[i] == -1:
             dp[i + 1] = max(dp[i], profit)
         else:
-            dp[i + 1] = max(dp[i], dp[largestCompatibleJob[i] + 1] + profit)
+            dp[i + 1] = max(dp[i], dp[closestCompatibleJob[i] + 1] + profit)
 
     return dp[-1]
 
