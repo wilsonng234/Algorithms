@@ -9,10 +9,9 @@ from typing import List
 
 
 def coinChange(coins: List[int], amount: int) -> int:
-    if amount == 0:
-        return 0
-
     dp = [float("inf")] * (amount + 1)
+    dp[0] = 0
+
     for coin in coins:
         if coin <= amount:
             dp[coin] = 1
