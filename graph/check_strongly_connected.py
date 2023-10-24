@@ -1,9 +1,15 @@
+from graph import Graph
 import random
-from collections import deque
+from collections import deque, defaultdict
 
 
 def reversed_edges(edges):
-    return [(edge[1], edge[0]) for edge in edges]
+    reversed_edges = defaultdict(set)
+    for node, neighbors in edges.items():
+        for neighbor in neighbors:
+            reversed_edges[neighbor].add(node)
+
+    return reversed_edges
 
 
 # 1. If  graph G has a strong vertex s then EVERY vertex in G is strong
@@ -16,30 +22,33 @@ def check_reached_all_nodes(nodes, edges, root):
         node = queue.popleft()
         visited.add(node)
 
-        for edge in edges:
-            if edge[0] == node and edge[1] not in visited:
-                queue.append(edge[1])
+        for node in nodes:
+            for neighbor in edges[node]:
+                if neighbor not in visited:
+                    queue.append(neighbor)
 
     return visited == nodes
 
 
-def check_strongly_connected(edges):
-    nodes = set()
-    for edge in edges:
-        nodes.add(edge[0])
-        nodes.add(edge[1])
-
-    s = random.choice(list(nodes))
-    can_reach_all_nodes = check_reached_all_nodes(nodes, edges, s)
+def check_strongly_connected(graph):
+    s = random.choice(list(graph.vertices))
+    can_reach_all_nodes = check_reached_all_nodes(graph.vertices, graph.edges, s)
     can_be_reached_from_all_nodes = check_reached_all_nodes(
-        nodes, reversed_edges(edges), s
+        graph.vertices, reversed_edges(graph.edges), s
     )
 
     return can_reach_all_nodes and can_be_reached_from_all_nodes
 
 
+graph = Graph()
 edges = [(0, 1), (1, 2), (2, 3), (3, 0), (2, 4), (4, 2)]
-assert check_strongly_connected(edges) == True
+for edge in edges:
+    graph.addEdge(edge[0], edge[1])
+assert check_strongly_connected(graph) == True
 
+
+graph = Graph()
 edges = [(0, 1), (1, 2), (2, 3)]
-assert check_strongly_connected(edges) == False
+for edge in edges:
+    graph.addEdge(edge[0], edge[1])
+assert check_strongly_connected(graph) == False

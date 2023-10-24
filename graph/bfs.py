@@ -1,23 +1,28 @@
+from graph import Graph
 from collections import deque
 
 
-def bfs(root, edges):
-    visited = [False] * len(edges)
-    visited[root] = True
-
+def bfs(root, graph):
     queue = deque([root])
+    visited = set([root])
     distance = 0
 
     while len(queue) != 0:
         node = queue.popleft()
 
-        for neighbor in edges[node]:
-            if not visited[neighbor]:
-                visited[neighbor] = True
+        for neighbor in graph.edges[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
                 queue.append(neighbor)
 
-        print(f"Node {node} is at distance {distance} from root {root}")
+                print(f"Node {neighbor} is at distance {distance+1} from root {root}")
+
         distance = distance + 1
 
 
-bfs(0, [[1, 2], [3, 0], [3, 1], []])
+graph = Graph()
+edges = [[1, 2], [3, 0], [3, 1], [2, 3], [3, 6]]
+for edge in edges:
+    graph.addEdge(edge[0], edge[1])
+
+bfs(1, graph)
