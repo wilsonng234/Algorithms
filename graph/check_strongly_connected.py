@@ -1,6 +1,9 @@
-from graph import Graph
-import random
+import os, sys, random
 from collections import deque, defaultdict
+
+sys.path.append(".." + os.path.sep + "data_structures")
+
+from graph import Graph
 
 
 def reversed_edges(edges):
@@ -52,3 +55,5 @@ edges = [(0, 1), (1, 2), (2, 3)]
 for edge in edges:
     graph.addEdge(edge[0], edge[1])
 assert check_strongly_connected(graph) == False
+
+print("All tests passed!")

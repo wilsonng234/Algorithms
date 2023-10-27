@@ -1,3 +1,6 @@
+import os, sys
+
+sys.path.append(".." + os.path.sep + "data_structures")
 from graph import Graph
 
 
@@ -38,3 +41,5 @@ assert cycle_detect(graph) == False
 
 graph = Graph([(1, 2), (2, 1), (2, 3), (3, 2), (1, 3), (3, 1)])
 assert cycle_detect(graph) == True
+
+print("All tests passed!")

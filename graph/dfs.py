@@ -1,3 +1,6 @@
+import os, sys
+
+sys.path.append(".." + os.path.sep + "data_structures")
 from graph import Graph
 
 

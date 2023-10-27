@@ -1,5 +1,8 @@
-from graph import Graph
+import os, sys
 from collections import deque
+
+sys.path.append(".." + os.path.sep + "data_structures")
+from graph import Graph
 
 
 def bfs(root, graph):

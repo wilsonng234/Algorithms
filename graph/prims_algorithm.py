@@ -1,6 +1,9 @@
+import os, sys
 from typing import List
-from graph import WeightedGraph
 from heapdict import heapdict
+
+sys.path.append(".." + os.path.sep + "data_structures")
+from graph import WeightedGraph
 
 # Leetcode 1584. Min Cost to Connect All Points
 
