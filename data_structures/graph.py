@@ -1,6 +1,15 @@
 from collections import defaultdict
 
 
+def getAdjacencyMatrix(adjacencyList, weights):
+    num_vertices = max(adjacencyList.keys()) + 1
+    adjacencyMatrix = [[0 for _ in range(num_vertices)] for _ in range(num_vertices)]
+
+    for vertex, neighbours in adjacencyList.items():
+        for neighbour in neighbours:
+            adjacencyMatrix[vertex][neighbour] = weights[(vertex, neighbour)]
+
+
 class Graph:
     def __init__(self, edges=[]):
         self.vertices = set()
