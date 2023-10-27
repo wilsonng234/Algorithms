@@ -17,7 +17,7 @@ from graph import WeightedGraph
 
 
 # O(V*E)
-def bellman_ford_efficient(
+def bellman_ford_algorithm_efficient(
     weighted_graph: WeightedGraph, source: int
 ) -> List[Dict[int, int]]:
     weights = weighted_graph.weights
@@ -42,7 +42,7 @@ def bellman_ford_efficient(
 
 
 # O(V*E)
-def bellman_ford_naive(
+def bellman_ford_algorithm_naive(
     weighted_graph: WeightedGraph, source: int
 ) -> List[Dict[int, int]]:
     weights = weighted_graph.weights
@@ -66,7 +66,7 @@ def networkDelayTime(times: List[List[int]], n: int, k: int) -> int:
     weighted_graph = WeightedGraph(times)
     for vertex in range(1, n + 1):
         weighted_graph.vertices.add(vertex)
-    distances, _ = bellman_ford_efficient(weighted_graph, k)
+    distances, _ = bellman_ford_algorithm_efficient(weighted_graph, k)
 
     max_distance = max(distances.values())
     return max_distance if max_distance != float("inf") else -1
