@@ -4,9 +4,7 @@ from functools import reduce, cmp_to_key
 # 179. Largest Number
 
 # Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
-# Children with a higher rating get more candies than their neighbors.
-
-# Given a list of non-negative integers nums, arrange them such that they form the largest number and return it.
+# Since the result may be very large, so you need to return a string instead of an integer.
 
 
 def largestNumber(nums: List[int]) -> str:
